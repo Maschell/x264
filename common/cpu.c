@@ -97,6 +97,7 @@ const x264_cpu_name_t x264_cpu_names[] =
     {"", 0},
 };
 
+#ifndef __WIIU__
 #if (ARCH_PPC && SYS_LINUX) || (ARCH_ARM && !HAVE_NEON)
 #include <signal.h>
 #include <setjmp.h>
@@ -114,6 +115,7 @@ static void sigill_handler( int sig )
     canjump = 0;
     siglongjmp( jmpbuf, 1 );
 }
+#endif
 #endif
 
 #if HAVE_MMX
